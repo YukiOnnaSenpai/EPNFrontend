@@ -1,0 +1,22 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag==1">Dodaj konto</h3>
+  <h3 mat-dialog-title *ngIf="flag==2">Izmeni konto</h3>
+  <h3 mat-dialog-title *ngIf="flag==3">Obrisi konto</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Naziv konta" [(ngModel)]="data.naziv" name="naziv" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Racun" [(ngModel)]="data.racun" name="racun" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+    <button mat-button *ngIf="flag==1" [type]="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Dodaj</button>
+    <button mat-button *ngIf="flag==2" [type]="submit" [mat-dialog-close]="1" (click)="update()" [disabled]="!formControl.valid">Izmeni</button>
+    <button mat-button *ngIf="flag==3" [type]="submit" [mat-dialog-close]="1" (click)="delete()">Obrisi</button>
+    <button mat-button (click)="cancel()">Odustani</button>
+  </form>
+</div>
+

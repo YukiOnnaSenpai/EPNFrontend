@@ -1,0 +1,31 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag==1">Dodaj element procene zemljista</h3>
+  <h3 mat-dialog-title *ngIf="flag==2">Izmeni element procene zemljista</h3>
+  <h3 mat-dialog-title *ngIf="flag==3">Obrisi element procene zemljista</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Opis" [(ngModel)]="data.opis" name="opis" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Koeficijent" [(ngModel)]="data.koeficijent" name="koeficijent" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.model" placeholder="Model procene" name="model" [compareWith]="CompareTo" [disabled]="flag == 3 || flag == 2">
+            <mat-option *ngFor="let model of modeli" [value]="model">
+                {{model.id}}
+              </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-button *ngIf="flag==1" [type]="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Dodaj</button>
+    <button mat-button *ngIf="flag==2" [type]="submit" [mat-dialog-close]="1" (click)="update()" [disabled]="!formControl.valid">Izmeni</button>
+    <button mat-button *ngIf="flag==3" [type]="submit" [mat-dialog-close]="1" (click)="delete()">Obrisi</button>
+    <button mat-button (click)="cancel()">Odustani</button>
+  </form>
+</div>
+

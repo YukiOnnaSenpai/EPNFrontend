@@ -1,0 +1,97 @@
+<mat-toolbar color="primary">
+	<span class="title-center">Zemljiste</span>
+</mat-toolbar>
+
+<!-- <mat-form-field>
+		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field> -->
+	
+<div class="mat-elevation-z8">
+	<table mat-table class="full-width-table" [dataSource]="data" matSort>
+
+		<!-- ID Column -->
+		<ng-container matColumnDef="id">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+		<td mat-cell *matCellDef="let row"> {{row.id}} </td>
+		</ng-container>
+
+		<!-- Povrsina Column -->
+		<ng-container matColumnDef="povrsina">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Povrsina </th>
+		<td mat-cell *matCellDef="let row"> {{row.povrsina}} </td>
+    </ng-container>
+
+    <!-- KnjigVr Column -->
+    <ng-container matColumnDef="knjigVr">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Knjigovodstvena vrednost </th>
+      <td mat-cell *matCellDef="let row"> {{row.knjigVr}} </td>
+    </ng-container>
+
+    <!-- Napomena Column -->
+    <ng-container matColumnDef="napomena">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Napomena </th>
+      <td mat-cell *matCellDef="let row"> {{row.napomena}} </td>
+    </ng-container>
+
+    <!-- Katastarski broj Column -->
+    <ng-container matColumnDef="katBroj">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Broj </th>
+      <td mat-cell *matCellDef="let row"> {{row.katBroj}} </td>
+      </ng-container>
+
+    <!-- Katastarski podbroj Column -->
+    <ng-container matColumnDef="katPodbroj">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Podbroj </th>
+    <td mat-cell *matCellDef="let row"> {{row.katPodbroj}} </td>
+    </ng-container>
+
+    <!-- Katastarski deo parcele Column -->
+    <ng-container matColumnDef="katDeoParcele">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Deo parcele </th>
+      <td mat-cell *matCellDef="let row"> {{row.katDeoParcele}} </td>
+    </ng-container>
+
+    <!-- Katastarski potes Column -->
+    <ng-container matColumnDef="katPotes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Potes </th>
+      <td mat-cell *matCellDef="let row"> {{row.katPotes}} </td>
+    </ng-container>
+
+    <!-- Namena Column -->
+    <ng-container matColumnDef="namenaZem">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Namena </th>
+      <td mat-cell *matCellDef="let row"> {{row.namenaZem.id}} </td>
+    </ng-container>
+
+    <!-- Katastarska opstina Column -->
+    <ng-container matColumnDef="katastarskaOpstina">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opstina </th>
+      <td mat-cell *matCellDef="let row"> {{row.katastarskaOpstina.id}} </td>
+    </ng-container>
+
+		<!-- actions -->
+		<ng-container matColumnDef="actions">
+			<th mat-header-cell *matHeaderCellDef> 
+				<button mat-icon-button color="primary" (click)="openDialog(1)">
+						<mat-icon>add</mat-icon>
+					</button>	
+			</th>
+
+			<td mat-cell *matCellDef="let row; let i=index;">
+				<button mat-icon-button color="primary" (click)="openDialog(2, row.id, row.povrsina, row.knjigVr, row.napomena, row.katBroj, row.katPodbroj, row.katDeoParcele, row.katPotes, row.namenaZem, row.katastarskaOpstina)">
+					<mat-icon aria-label="Edit">edit</mat-icon>
+				</button>
+	  
+				<button mat-icon-button color="primary"(click)="openDialog(3, row.id, row.povrsina, row.knjigVr, row.napomena, row.katBroj, row.katPodbroj, row.katDeoParcele, row.katPotes, row.namenaZem, row.katastarskaOpstina)">
+					<mat-icon aria-label="Delete">delete</mat-icon>
+				</button>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+		</tr>
+	</table>
+
+	<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>

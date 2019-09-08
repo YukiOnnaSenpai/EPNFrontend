@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+    <span class="title-center">Model procene detaljan prikaz</span>
+  </mat-toolbar>
+
+  <div class="mat-elevation-z8">
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="form">
+            <mat-form-field>
+             <input matInput placeholder="Godina" [(ngModel)]="id" name="godina" [disabled]=true required>
+            </mat-form-field>
+          </div>
+          <div class="form">
+            <mat-form-field>
+              <input matInput placeholder="Opis" [(ngModel)]="opis" name="opis" [disabled]=true required>
+            </mat-form-field>
+          </div>
+          <div class= "button-panel">
+            <button mat-button (click)="showOsobina()"> Osobina modela </button>
+            <button mat-button (click)="showKoef()"> Koeficijent zemljista</button>
+            <button mat-button (click)="showElement()"> Element procene zemljista</button>
+          </div>
+    </form>
+      <ng-container *ngIf="showOsobinaParam">
+          <app-osobina-modela  [dataToRender] = "id"></app-osobina-modela>
+      </ng-container>
+      <ng-container *ngIf="showKoefParam">
+        <app-koef-zem [dataToRender] = "id" [type] =true></app-koef-zem>
+      </ng-container>
+      <ng-container *ngIf="showElementParam">
+        <app-element-procene-zem [dataToRender]="id"></app-element-procene-zem>
+      </ng-container>
+  </div>

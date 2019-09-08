@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span class="title-center">Namena zemljista detaljan prikaz</span>
+</mat-toolbar>
+
+<div class="mat-elevation-z8">
+  <form class="mat-dialog-content" #formControl="ngForm">
+      <div class="form">
+          <mat-form-field>
+           <input matInput placeholder="Opis" [(ngModel)]="opis" name="opis" [disabled]=true required>
+          </mat-form-field>
+        </div>
+        <div class= "button-panel">
+          <button mat-button (click)="showKoefZem()"> Koeficijent zemljista</button>
+          <button mat-button (click)="showZem()"> Zemljiste </button>
+        </div>
+  </form>
+    <ng-container *ngIf="showKoefZemParam">
+      <app-koef-zem [dataToRender] = "id" [type] =false></app-koef-zem>
+    </ng-container>
+    <ng-container *ngIf="showZemParam">
+      <app-zemljiste [dataToRender]="id"></app-zemljiste>
+    </ng-container>
+</div>
